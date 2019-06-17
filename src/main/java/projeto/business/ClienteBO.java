@@ -94,7 +94,7 @@ public class ClienteBO {
 			clientes.forEach(cliente -> lista.add(buildRetornoVO(cliente)));
 			return lista;
 		}else {
-			throw new NotFoundException("Not Found");
+			throw new NotFoundException("Não encontrado");
 		}
 	}
 	
@@ -103,7 +103,7 @@ public class ClienteBO {
 		if (Optional.ofNullable(cliente).isPresent()) {
 			return buildRetornoVO(cliente);
 		}else {
-			throw new NotFoundException("Not Found");
+			throw new NotFoundException("Não encontrado");
 		}
 	}
 
@@ -117,7 +117,7 @@ public class ClienteBO {
 
 	public RetornoVO  atualizar(RetornoVO clienteVO) {
 		Cliente cliente = clienteService.getById(clienteVO.getCliente().getId());
-		if (!Optional.ofNullable(cliente).isPresent()) {
+		if (Optional.ofNullable(cliente).isPresent()) {
 			
 			Cliente clienteAtualizado = new Cliente(clienteVO.getCliente().getId(), clienteVO.getCliente().getNome(), clienteVO.getCliente().getIdade());
 			Historico historico = new Historico(clienteVO.getHistorico().getId(), clienteVO.getHistorico().getMin_temp(), clienteVO.getHistorico().getMax_temp());

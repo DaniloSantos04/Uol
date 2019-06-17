@@ -2,9 +2,9 @@ package projeto.enumerator;
 
 public enum CustomMessage {
 	
-	SERVER_ERROR("An unexpected error has occurred. Please try again"),
-	NOT_ACCEPTABLE("Not Acceptable"),
-	NOT_FOUND("Not Found");
+	SERVER_ERROR("Ocorreu um erro inesperado. Por favor, tente novamente"),
+	NOT_ACCEPTABLE("Não aceito"),
+	NOT_FOUND("Não encontrado");
 
 	private final String message;
 
