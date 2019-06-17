@@ -1,5 +1,7 @@
 package projeto.services;
 
+import javax.cache.annotation.CacheRemoveAll;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -19,7 +21,7 @@ public class HistoricoServiceImpl implements HistoricoService {
     private HistoricoRepository historicoRepository;
 	
 	@Override
-	@Cacheable(unless="#result==null")
+	@CacheRemoveAll(afterInvocation = false)
 	public Iterable<Historico> listAll() {
 		return historicoRepository.findAll();
 	}

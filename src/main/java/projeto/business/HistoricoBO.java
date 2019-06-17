@@ -20,23 +20,22 @@ public class HistoricoBO {
 	private HistoricoService historicoService;
 	
 	public HistoricoVO buscarById(Integer id) {
-		Historico historico = historicoService.getById(id);
-		if (Optional.ofNullable(historico).isPresent()) {
+		try {
+			Historico historico = historicoService.getById(id);
 			return buildHistoricoVO(historico);
-		}else {
-			throw new NotFoundException("Not Found");
+		}catch (Exception e) {
+			throw new NotFoundException("Não encontrado");
 		}
 	}
 	
 	public List<HistoricoVO> listaHistoricos() {
-		Iterable<Historico> historicos = historicoService.listAll();
-		
-		if (Optional.ofNullable(historicos).isEmpty()) {
+		try {
+			Iterable<Historico> historicos = historicoService.listAll();
 			List<HistoricoVO> lista = new ArrayList<HistoricoVO>();
 			historicos.forEach(cliente -> lista.add(buildHistoricoVO(cliente)));
 			return lista;
-		}else {
-			throw new NotFoundException("Not Found");
+		}catch (Exception e) {
+			throw new NotFoundException("Não encontrado");
 		}
 	}
 	

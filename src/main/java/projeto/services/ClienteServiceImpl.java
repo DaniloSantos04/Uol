@@ -1,12 +1,13 @@
 package projeto.services;
 
+import javax.cache.annotation.CacheRemoveAll;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import projeto.models.Cliente;
 import projeto.repository.ClienteRepository;
@@ -19,14 +20,13 @@ public class ClienteServiceImpl implements ClienteService {
     private ClienteRepository clienteRepository;
 	
 	@Override
-	//@Cacheable(unless="#result==null")
+	@CacheRemoveAll(afterInvocation = false)
 	public Iterable<Cliente> listAll() {
 		return clienteRepository.findAll();
 	}
 
 	@Override
 	@Cacheable(key= "#id", unless="#result==null")
-	@Transactional(readOnly = true)
 	public Cliente getById(Integer id) {
 		return clienteRepository.findById(id).orElse(null);
 	}

@@ -87,22 +87,21 @@ public class ClienteBO {
 	}
 
 	public List<RetornoVO> listaClientes() {
-		Iterable<Cliente> clientes = clienteService.listAll();
-		
-		if (Optional.ofNullable(clientes).isEmpty()) {
+		try {
+			Iterable<Cliente> clientes = clienteService.listAll();
 			List<RetornoVO> lista = new ArrayList<RetornoVO>();
 			clientes.forEach(cliente -> lista.add(buildRetornoVO(cliente)));
 			return lista;
-		}else {
+		}catch (Exception e) {
 			throw new NotFoundException("Não encontrado");
 		}
 	}
 	
 	public RetornoVO buscarClienteId(Integer id) {
-		Cliente cliente = clienteService.getById(id);
-		if (Optional.ofNullable(cliente).isPresent()) {
+		try {
+			Cliente cliente = clienteService.getById(id);
 			return buildRetornoVO(cliente);
-		}else {
+		}catch (Exception e) {
 			throw new NotFoundException("Não encontrado");
 		}
 	}
@@ -111,7 +110,7 @@ public class ClienteBO {
 		try {
 			clienteService.delete(id);
 		}catch (Exception e) {
-			throw new NotFoundException("Not Found");
+			throw new NotFoundException("Não encontrado");
 		}
 	}
 
@@ -129,12 +128,8 @@ public class ClienteBO {
 			historico.setLocalidade(localidade);
 			localidade.getHistoricos().add(historico);
 			clienteAtualizado.setHistorico(historico);
-			
 			cliente = clienteService.save(clienteAtualizado);
-			
 			return buildRetornoVO(clienteAtualizado);
-			
-		
 		}else {
 			throw new NotFoundException("Not Found");
 		}
