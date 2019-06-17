@@ -35,7 +35,6 @@ public class ClienteController {
 				.body(clienteSave);
 	}
 	
-	
 	@PutMapping()
 	public ResponseEntity<?> atualizar(@RequestBody RetornoVO cliente) {
 		return ResponseEntity.ok().body(clienteBO.atualizar(cliente));
@@ -45,7 +44,6 @@ public class ClienteController {
 	public ResponseEntity<?> buscarClienteId(@PathVariable Integer id) {
 		return ResponseEntity.ok().body(clienteBO.buscarClienteId(id));
 	}
-	
 	
 	@GetMapping
 	public ResponseEntity<?> listaClientes() {

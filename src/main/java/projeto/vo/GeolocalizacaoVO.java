@@ -2,6 +2,8 @@ package projeto.vo;
 
 import java.io.Serializable;
 
+import projeto.models.Localidade;
+
 public class GeolocalizacaoVO implements Serializable{
 	private static final long serialVersionUID = 8307074430601846184L;
 	
@@ -20,6 +22,31 @@ public class GeolocalizacaoVO implements Serializable{
 	private String longitude;
 	
 	
+	public GeolocalizacaoVO() {
+		
+	}
+
+	public GeolocalizacaoVO(Integer id, String ipv4, String continete, String pais, String cidade, String latitude,
+			String longitude) {
+		this.id = id;
+		this.ipv4 = ipv4;
+		this.continete = continete;
+		this.pais = pais;
+		this.cidade = cidade;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+	
+	public GeolocalizacaoVO(Localidade local) {
+		this.id = local.getId();
+		this.ipv4 = local.getData().getIpv4();
+		this.continete = local.getData().getContinent_name();
+		this.pais = local.getData().getCity_name();
+		this.cidade = local.getData().getCity_name();
+		this.latitude = local.getData().getLatitude();
+		this.longitude = local.getData().getLongitude();
+	}
+
 	public Integer getId() {
 		return id;
 	}

@@ -13,7 +13,16 @@ public class HistoricoVO implements Serializable{
 	
 	private GeolocalizacaoVO localidade;
 	
+	public HistoricoVO( ) {
+	}
 	
+	public HistoricoVO(Integer id, String min_temp, String max_temp, GeolocalizacaoVO localidade) {
+		this.id = id;
+		this.min_temp = min_temp;
+		this.max_temp = max_temp;
+		this.localidade = localidade;
+	}
+
 	public Integer getId() {
 		return id;
 	}

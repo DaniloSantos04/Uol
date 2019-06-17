@@ -1,7 +1,4 @@
-![Spring Logo](https://2.bp.blogspot.com/-DvI0i_YgvtY/WxT8sljW-1I/AAAAAAAACNQ/O9PFQhwkPGY5ChFlWzEZa96V56PdhFtwQCLcBGAs/s1600/spring-boot-logo.png)
-
-
-# REST COM SPRING BOOT #
+# RESTful EM SPRING BOOT #
 
 ## Introdução
 
@@ -17,10 +14,10 @@ Esse repositório foi criado com o objetivo de desenvolver um CRUD REST com SPRI
 
    - Foi escolhido, pois, DevTools configura algumas propriedades com valores que são convenientes em tempo de desenvolvimento, monitora os classpath que serão reinicializados automaticamente a qualquer alteração neles. Contem também um servidor embarcado que envia um aviso para o navegador dizendo que os arquivos estáticos ou os templates foram alterados.
    
-- Gson
+- Spring Clound OpenFeign
 
-   - É uma Biblioteca Java que tem como principal objetivo prover uma interface simples para ler e exportar no formato JSON. 
-   - Foi escolhido o Gson porque com apenas poucas linhas você consegue converter Objetos Java em uma representação JSON e vice-versa.
+   - Foi escolhido por ser um cliente REST declarativo para aplicativos Spring Boot.
+
    
 - H2 Database
    - É um banco de dados open Source que funciona em memória com um console acessível pelo browser dentro do contexto da aplicação.
@@ -36,7 +33,7 @@ Para efetuar as requisições Json foi utilizado o [Postman](https://www.getpost
 
 Sinta-se à vontade para baixar ou clonar o código fonte:
 
-   > https://github.com/DaniloSantos04/projeto-web-uol.git
+   > https://github.com/DaniloSantos04/Uol
   
 - Logo após baixe o Eclipse IDE for Java EE Developers neste link (https://www.eclipse.org/downloads/packages/release/kepler/r/eclipse-ide-java-ee-developers) e instale-o normalmente no seu computador.
 - Importe o projeto Maven.
@@ -57,35 +54,35 @@ Com o Postman aberto execute os seguintes JSON's abaixo:
 - *GET* 
    - `http://localhost:8080/clientes` - Lista todos os clientes com id, nome e idade de cada um.
    - `http://localhost:8080/clientes/id` - Retorna o id, nome e idade do cliente informado.
-   - `http://localhost:8080/clientes/historico-cliente/id` - Retorna todas as informações do cliente informado, como nome, idade, localidade, temperatura mínima e máxima.
+   - `http://localhost:8080/historicos/id` - Retorna todas as informações do cliente informado, como nome, idade, localidade, temperatura mínima e máxima.
    - `http://localhost:8080/historicos` - Lista todos os históricos cadastrados.
  
 - *DELETE* 
    - `http://localhost:8080/clientes/id` - Remove todos os registros do cliente informado nas tabelas histórico, localidade e cliente.
    
  - *PUT* 
+    - `http://localhost:8080/clientes` - Seguido das informações abaixo:
    - Na aba Headers do Postman preencha os campos _KEY:_ _Content-Type_ e _VALUE:_ _application/json_.
    - Na aba Body do Postman selecione _raw_ e insira o JSON desejado no campo abaixo.
    
-   Insira no campo solicitado a _URL_a seguir:
+   Abaixo segue um modelo de JSON aceito pelo endpoint de PUT.
+   ```
+   {
+    "nome": "Barrera Golden",
+    "idade": 31
+    }
    
-   - `http://localhost:8080/clientes/id` - Atualiza o nome e idade do cliente no registro informado.
    
  - *POST* 
+   - `http://localhost:8080/clientes` - Seguido das informações abaixo:
    - Na aba Headers do Postman preencha os campos _KEY:_ _Content-Type_ e _VALUE:_ _application/json_.
    - Na aba Body do Postman selecione _raw_ e insira o JSON desejado no campo abaixo.
+
    
-   Insira no campo solicitado a _URL_a seguir:
-   
-   - `http://localhost:8080/clientes` - Cadastra um novo cliente.
-   
-## JSON aceito:
-   
-   Abaixo segue um modelo de JSON aceito pelo serviço.
+   Abaixo segue um modelo de JSON aceito pelo endpoint de POST.
    ```
    {
     "nome": "Barrera Golden",
     "idade": 31
     }
     
-Modelos de Json https://github.com/DaniloSantos04/projeto-web-uol/blob/master/generatedClientes.json para testes.
