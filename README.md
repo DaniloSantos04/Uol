@@ -57,20 +57,39 @@ Com o Postman aberto execute os seguintes JSON's abaixo:
    - `http://localhost:8080/historicos/id` - Retorna todas as informações do cliente informado, como nome, idade, localidade, temperatura mínima e máxima.
    - `http://localhost:8080/historicos` - Lista todos os históricos cadastrados.
  
+ 
 - *DELETE* 
    - `http://localhost:8080/clientes/id` - Remove todos os registros do cliente informado nas tabelas histórico, localidade e cliente.
    
+   
  - *PUT* 
-    - `http://localhost:8080/clientes` - Seguido das informações abaixo:
+   - `http://localhost:8080/clientes` - Seguido das informações abaixo:
    - Na aba Headers do Postman preencha os campos _KEY:_ _Content-Type_ e _VALUE:_ _application/json_.
    - Na aba Body do Postman selecione _raw_ e insira o JSON desejado no campo abaixo.
    
    Abaixo segue um modelo de JSON aceito pelo endpoint de PUT.
    ```
    {
-    "nome": "Barrera Golden",
-    "idade": 31
+    "cliente": {
+        "id": 1,
+        "nome": "Barrera Golden",
+        "idade": 31
+    },
+    "historico": {
+        "id": 1,
+        "min_temp": "11.975",
+        "max_temp": "27.37",
+        "localidade": {
+            "id": 1,
+            "ipv4": "179.110.207.243",
+            "continete": "South America",
+            "pais": "Brazil",
+            "cidade": "Itu",
+            "latitude": "-23.26740",
+            "longitude": "-47.29430"
+        }
     }
+}
    
    
  - *POST* 
